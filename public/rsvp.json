@@ -1,0 +1,18 @@
+{
+    "guests": [
+        {
+            "email": "baker.bsc@gmail.com",
+            "firstname": "Martin",
+            "invite": "ceremony",
+            "lastname": "Baker",
+            "rsvp": "ceremony"
+        },
+        {
+            "email": "gordon.baker@gmail.com",
+            "firstname": "Gordon",
+            "invite": "party",
+            "lastname": "Baker",
+            "rsvp": "party"
+        }
+    ]
+}

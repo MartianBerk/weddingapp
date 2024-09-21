@@ -5,14 +5,14 @@
             "firstname": "Martin",
             "invite": "ceremony",
             "lastname": "Baker",
-            "rsvp": "ceremony"
+            "rsvp": null
         },
         {
-            "email": "gordon.baker@gmail.com",
-            "firstname": "Gordon",
-            "invite": "party",
-            "lastname": "Baker",
-            "rsvp": "party"
+            "email": "ashleyogasawara@gmail.com",
+            "firstname": "Ashley",
+            "invite": "ceremony",
+            "lastname": "Ogasawara",
+            "rsvp": null
         }
     ]
 }

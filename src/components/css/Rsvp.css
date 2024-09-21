@@ -1,0 +1,50 @@
+.rsvp {
+    font-size: 25px;
+    width: 100%;
+    position: fixed;
+}
+
+.rsvp-response-button {
+    font-family: inherit;
+    font-size: inherit;
+    color: #66663a;
+    background-color: #b2b2af;
+    margin-top: 10px;
+    border: none;
+    cursor: pointer;
+    box-shadow: inset 1px 1px 1px rgba(232, 225, 225, 0.8), inset -3px -3px 6px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: inset 1px 1px 1px rgba(232, 225, 225, 0.8), inset -3px -3px 6px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.1), inset -3px -3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.rsvp-response-button:hover {
+    background-color: #919e6f;
+}
+
+.rsvp-response-button.active {
+    background-color: #919e6f;
+}
+
+.rsvp-response-options {
+    margin-top: 15px;
+}
+
+.rsvp-response-guest {
+    float: left;
+    border-top: none;
+    font-size: 25px;
+    padding-top: 5px;
+    transition: 0.3s;
+    outline: none;
+    width: 50%;
+    height: 50px;
+}
+
+.rsvp-response-guest-buttons {
+    width: 50%;
+    margin: auto;
+}
+
+.rsvp-response-submit button {
+    margin-top: calc(100% - 80%);
+}

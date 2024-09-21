@@ -5,6 +5,8 @@ import { Requests } from '../requests.js';
 
 import Error from './Error.js';
 
+import '../css/Rsvp.css';
+
 
 class Rsvp extends Component {
     constructor(props) {
@@ -16,6 +18,7 @@ class Rsvp extends Component {
 
         this._handleRsvpClick = this._handleRsvpClick.bind(this);
         this._handleSubmit = this._handleSubmit.bind(this);
+        this._handleDietChange = this._handleDietChange.bind(this);
     }
 
     _handleRsvpClick(i, event) {
@@ -32,12 +35,12 @@ class Rsvp extends Component {
         })
     }
 
-    _handleSubmit(event) {
+    _handleSubmit(_event) {
         let payload = {rsvp: []}
 
         this.state.guests.map(guest => {
             if (guest.rsvp !== null) {
-                payload.rsvp.push({email: guest.email, rsvp: guest.rsvp})
+                payload.rsvp.push({email: guest.email, rsvp: guest.rsvp, diet: guest.diet})
             }
         })
 
@@ -55,6 +58,7 @@ class Rsvp extends Component {
             let confirmed = true;
 
             data.guests.map((guest, i) => {
+                guest.diet = null
                 guests[i] = guest
                 if (guest.rsvp === null) {
                     confirmed = false
@@ -64,6 +68,18 @@ class Rsvp extends Component {
             return {guests: guests, confirmed: confirmed}
         }))
         .catch()
+    }
+
+    _handleDietChange(i, event) {
+        this.state.guests.map((_guest, j) => {
+            if (j === i) {
+                this.setState((_) => {
+                    let guests = [...this.state.guests]
+                    guests[j].diet = event.target.value
+                    return {guests: guests}
+                })
+            }
+        })
     }
 
     _onAuthentication () {
@@ -89,25 +105,34 @@ class Rsvp extends Component {
 
     _renderResponse() {
         return (
-            <div id="rsvp-response">
+            <div className="rsvp-response">
+                <div className="rsvp-response-options">
                 {
                     this.state.guests.map((guest, i) => {
                         return (
                             <div className="rsvp-response-guest">
                                 { guest.firstname }
-                                <button value="yes" onClick={ (e) => this._handleRsvpClick(i, e) }>
-                                    Yes, I'll be there
-                                </button>
-                                <button key={i} value="no" onClick={ (e) => this._handleRsvpClick(i, e) }>
-                                    Sorry, but I'll be there in spirit
-                                </button>
+                                <br />
+                                <div className="rsvp-response-guest-buttons">
+                                    <button className={"rsvp-response-button" + (guest.rsvp === guest.invite ? " active" : "")} value="yes" onClick={ (e) => this._handleRsvpClick(i, e) }>
+                                        Yes, I'll be there
+                                    </button>
+                                    {
+                                        guest.rsvp === guest.invite && 
+                                        <textarea id={`rsvp-response-diet-${i}`} className="rsvp-response-options" placeholder="Dietary restrictions (if any)" rows="4" onChange={ (e) => this._handleDietChange(i, e) }></textarea>
+                                    }
+                                    <button className={"rsvp-response-button" + (guest.rsvp === "none" ? " active" : "")} key={i} value="no" onClick={ (e) => this._handleRsvpClick(i, e) }>
+                                        Sorry, I'll be there in spirit
+                                    </button>
+                                </div>
                             </div>
                         )
                     })
                 }
+                </div>
                 <div className="rsvp-response-submit">
-                    <button onClick={ this._handleSubmit }>
-                        Submit
+                    <button className="rsvp-response-button" onClick={ this._handleSubmit }>
+                        { this.state.confirmed ? "Confirmed" : "Submit" }
                     </button>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 .rsvp {
     font-size: 25px;
     width: 100%;
-    position: fixed;
+    /* position: relative; */
 }
 
 .rsvp-response-button {
@@ -45,6 +45,12 @@
     margin: auto;
 }
 
+.rsvp-response-submit {
+    height: 100px;
+}
+
 .rsvp-response-submit button {
-    margin-top: calc(100% - 80%);
+    height: 40px;
+    width: 80px;
+    margin-top: 200px;
 }

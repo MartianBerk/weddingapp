@@ -117,10 +117,12 @@ class Rsvp extends Component {
                                     <button className={"rsvp-response-button" + (guest.rsvp === guest.invite ? " active" : "")} value="yes" onClick={ (e) => this._handleRsvpClick(i, e) }>
                                         Yes, I'll be there
                                     </button>
+                                    <br />
                                     {
                                         guest.rsvp === guest.invite && 
                                         <textarea id={`rsvp-response-diet-${i}`} className="rsvp-response-options" placeholder="Dietary restrictions (if any)" rows="4" onChange={ (e) => this._handleDietChange(i, e) }></textarea>
                                     }
+                                    <br />
                                     <button className={"rsvp-response-button" + (guest.rsvp === "none" ? " active" : "")} key={i} value="no" onClick={ (e) => this._handleRsvpClick(i, e) }>
                                         Sorry, I'll be there in spirit
                                     </button>
@@ -165,7 +167,7 @@ class Rsvp extends Component {
         )
     }
 
-    render () {
+    render () { 
         return (
             <div className="rsvp-container">
                 {

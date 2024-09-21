@@ -1,25 +1,49 @@
-import logo from './logo.svg';
+import * as React from "react";
+import {
+  createBrowserRouter,
+  Outlet,
+  RouterProvider,
+} from "react-router-dom";
+
 import './App.css';
 
+import ErrorRoute from './components/routes/ErrorRoute.js';
+import InformationRoute from './components/routes/InformationRoute.js';
+import RsvpRoute from './components/routes/RsvpRoute.js';
+
+import Head from './components/container/Head.js'
+
 function App() {
+  const Layout = () => (
+    <>
+      <Head />
+      <Outlet />
+    </>
+  )
+  const router = createBrowserRouter([
+    {
+      element: <Layout />,
+      children: [
+        {
+          path: "/rsvp",
+          element: <RsvpRoute />,
+          errorElement: <ErrorRoute />
+        },
+        // {
+        //   path: "/information",
+        //   element: <InformationRoute />,
+        //   errorElement: <ErrorRoute />
+        // }
+      ]
+      
+    }
+  ]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="wedding-container">
+      <RouterProvider router={router} />
     </div>
-  );
+  )
 }
 
 export default App;

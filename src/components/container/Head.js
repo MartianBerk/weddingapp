@@ -12,7 +12,7 @@ class Head extends Component {
         return (
             <div className="wedding-header">
                 <p>Ashley & Martin '25</p>
-                <img src="enginehouse-color2-circle.svg" width="500" height="300" />
+                <img src="enginehouse-color2-circle2.svg" width="500" height="300" />
             </div>
         )
     }

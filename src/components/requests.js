@@ -2,7 +2,7 @@ import * as Constants from "./constants";
 
 
 export class Requests {
-    DEVELOPMENT = true;
+    DEVELOPMENT = false;
     OVERRIDES = {
         AUTHURL: "auth.json",
         RSVPURL: "rsvp.json"

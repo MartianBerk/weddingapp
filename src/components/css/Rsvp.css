@@ -1,15 +1,76 @@
+.rsvp-container {
+    height: 65%;
+}
+
 .rsvp {
     font-size: 25px;
+    height: 100%;
     width: 100%;
-    /* position: relative; */
+}
+
+/* #rsvp-invite {
+    margin-bottom: 15px;
+    height: 35%;
+} */
+
+/* .rsvp-response {
+    height: 50%;
+    position: relative;
+} */
+
+/* .rsvp-response-options {
+    height: 100%;
+} */
+
+/* .rsvp-response-submit {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+} */
+
+.rsvp-response-table {
+    width: 100%;
+}
+
+.rsvp-response-table td {
+    width: 30%;
+}
+
+.rsvp-response-table tr {
+    width: 30%;
+}
+
+.rsvp-response-button-container {
+    position: relative;
 }
 
 .rsvp-response-button {
+    background-color: inherit;
+    border-color: #ffffff;
+    cursor: pointer;
+    color: #88884a;
+    font-weight: bolder;
+    padding: 10px;
+    position: absolute;
+    top: 0;
+}
+
+.rsvp-response-button.active {
+    background-color: #919e6f;
+}
+
+.rsvp-response-diet {
+    background-color: inherit;
+    color: #88884a;
+}
+
+.rsvp-response-submit-button {
     font-family: inherit;
     font-size: inherit;
     color: #66663a;
     background-color: #b2b2af;
-    margin-top: 10px;
     border: none;
     cursor: pointer;
     box-shadow: inset 1px 1px 1px rgba(232, 225, 225, 0.8), inset -3px -3px 6px rgba(0, 0, 0, 0.3);
@@ -17,16 +78,16 @@
     -webkit-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.1), inset -3px -3px 6px rgba(0, 0, 0, 0.3);
 }
 
-.rsvp-response-button:hover {
+.rsvp-response-submit-button:hover {
     background-color: #919e6f;
 }
 
-.rsvp-response-button.active {
+.rsvp-response-submit-button.active {
     background-color: #919e6f;
 }
 
-.rsvp-response-options {
-    margin-top: 15px;
+/* .rsvp-response-option {
+    width: 100%;
 }
 
 .rsvp-response-guest {
@@ -34,23 +95,20 @@
     border-top: none;
     font-size: 25px;
     padding-top: 5px;
+    padding-bottom: 30px;
     transition: 0.3s;
     outline: none;
     width: 50%;
     height: 50px;
-}
+} */
 
-.rsvp-response-guest-buttons {
-    width: 50%;
+/* .rsvp-response-guest-buttons {
     margin: auto;
-}
+    text-align: left;
+    padding-left: 50px;
+} */
 
-.rsvp-response-submit {
-    height: 100px;
-}
 
-.rsvp-response-submit button {
-    height: 40px;
-    width: 80px;
-    margin-top: 200px;
-}
+
+
+

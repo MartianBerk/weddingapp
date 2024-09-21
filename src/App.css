@@ -6,4 +6,5 @@
   position: fixed;
   font-family: 'Brush Script MT', cursive;
   color: #9b9b6f;
+  overflow-y: scroll;
 }

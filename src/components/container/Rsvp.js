@@ -11,7 +11,7 @@ import '../css/Rsvp.css';
 class Rsvp extends Component {
     constructor(props) {
         super(props);
-        this.state = { authenticated: null, error: null, guests: [], confirmed: false }
+        this.state = { authenticated: null, error: null, guests: [], confirmed: false, allChecked: false }
         this.requests = new Requests();
 
         Auth(this.props.email, this.props.token, (success) => { this.setState({ authenticated: success }, this._onAuthentication ) });
@@ -24,14 +24,16 @@ class Rsvp extends Component {
     _handleRsvpClick(i, event) {
         this.setState((_) => {
             let guests = [...this.state.guests]
+            let allChecked = true;
 
             guests.map((guest, j) => {
                 if (i === j) {
                     guest.rsvp = event.target.value === "yes" ? guest.invite : "none"
                 }
+                allChecked = allChecked && guest.rsvp !== null;
             })
 
-            return { guests: guests }
+            return { guests: guests, allChecked: allChecked }
         })
     }
 
@@ -91,52 +93,113 @@ class Rsvp extends Component {
         .then(response => response.json())
         .then(data => this.setState((_) => {
             let confirmed = true;
+            let allChecked = true;
 
             data.guests.map((guest, i) => {
                 if (guest.rsvp === null) {
                     confirmed = false
+                    allChecked = false
                 }
             })
 
-            return {guests: data.guests, confirmed: confirmed}
+            return {guests: data.guests, confirmed: confirmed, allChecked: allChecked}
         }))
         .catch(e => this.setState({ error: true }))
     }
 
+    // _renderResponse1() {
+    //     return (
+    //         <div className="rsvp-response">
+    //             <div className="rsvp-response-options">
+    //             {
+    //                 this.state.guests.map((guest, i) => {
+    //                     return (
+    //                         <div className="rsvp-response-guest">
+    //                             { guest.firstname }
+    //                             <br />
+    //                             <div className="rsvp-response-guest-buttons">
+    //                                 <div className="rsvp-response-option">
+    //                                     <button className={"rsvp-response-button" + (guest.rsvp === guest.invite ? " active" : "")} value="yes" onClick={ (e) => this._handleRsvpClick(i, e) }>
+    //                                         { guest.rsvp === guest.invite ? 'X' : '' }
+    //                                     </button>
+    //                                     Wouldn't miss it
+    //                                 </div>
+    //                                 <br />
+    //                                 <div className="rsvp-response-option">
+    //                                     <button className={"rsvp-response-button" + (guest.rsvp === "none" ? " active" : "")} key={i} value="no" onClick={ (e) => this._handleRsvpClick(i, e) }>
+    //                                         { guest.rsvp === "none" ? 'X' : '' }
+    //                                     </button>
+    //                                     I'll be there in spirit
+    //                                 </div>
+    //                                 {
+    //                                     guest.rsvp === guest.invite && 
+    //                                     <textarea id={`rsvp-response-diet-${i}`} className="rsvp-response-diet" placeholder="Dietary restrictions (if any)" rows="4" onChange={ (e) => this._handleDietChange(i, e) }></textarea>
+    //                                 }
+    //                             </div>
+    //                         </div>
+    //                     )
+    //                 })
+    //             }
+    //             </div>
+    //             <div className="rsvp-response-submit">
+    //                 <button className="rsvp-response-submit-button" onClick={ this._handleSubmit }>
+    //                     { this.state.confirmed ? "Confirmed" : "Submit" }
+    //                 </button>
+    //             </div>
+    //         </div>
+    //     )
+    // }
+
     _renderResponse() {
         return (
             <div className="rsvp-response">
-                <div className="rsvp-response-options">
+                <br />
+                <table className="rsvp-response-table">
+                    <tr>
+                        <td></td>
+                        <td>Wouldn't Miss It</td>
+                        <td>Be There In Spirit</td>
+                    </tr>
+                    {
+                        this.state.guests.map((guest, i) => {
+                            return (
+                                <tr>
+                                    <td>
+                                        { guest.firstname }
+                                        {
+                                            guest.rsvp === guest.invite && 
+                                            <tr>
+                                                <textarea 
+                                                    id={`rsvp-response-diet-${i}`} 
+                                                    className="rsvp-response-diet" 
+                                                    placeholder="Dietary restrictions (if any)" 
+                                                    rows="4" 
+                                                    onChange={ (e) => this._handleDietChange(i, e) } 
+                                                />
+                                            </tr>
+                                        }
+                                    </td>
+                                    <td className="rsvp-response-button-container">
+                                        <button className={"rsvp-response-button" + (guest.rsvp === guest.invite ? " active" : "")} value="yes" onClick={ (e) => this._handleRsvpClick(i, e) } />
+                                    </td>
+                                    <td className="rsvp-response-button-container">
+                                        <button className={"rsvp-response-button" + (guest.rsvp === "none" ? " active" : "")} key={i} value="no" onClick={ (e) => this._handleRsvpClick(i, e) } />
+                                    </td>
+                                </tr>
+                            )
+                        })
+                    }
+                </table>
                 {
-                    this.state.guests.map((guest, i) => {
-                        return (
-                            <div className="rsvp-response-guest">
-                                { guest.firstname }
-                                <br />
-                                <div className="rsvp-response-guest-buttons">
-                                    <button className={"rsvp-response-button" + (guest.rsvp === guest.invite ? " active" : "")} value="yes" onClick={ (e) => this._handleRsvpClick(i, e) }>
-                                        Yes, I'll be there
-                                    </button>
-                                    <br />
-                                    {
-                                        guest.rsvp === guest.invite && 
-                                        <textarea id={`rsvp-response-diet-${i}`} className="rsvp-response-options" placeholder="Dietary restrictions (if any)" rows="4" onChange={ (e) => this._handleDietChange(i, e) }></textarea>
-                                    }
-                                    <br />
-                                    <button className={"rsvp-response-button" + (guest.rsvp === "none" ? " active" : "")} key={i} value="no" onClick={ (e) => this._handleRsvpClick(i, e) }>
-                                        Sorry, I'll be there in spirit
-                                    </button>
-                                </div>
-                            </div>
-                        )
-                    })
+                    this.state.allChecked &&
+                    (
+                        <div className="rsvp-response-submit">
+                            <button className="rsvp-response-submit-button" onClick={ this._handleSubmit }>
+                                { this.state.confirmed ? "Confirmed" : "Submit" }
+                            </button>
+                        </div>
+                    )
                 }
-                </div>
-                <div className="rsvp-response-submit">
-                    <button className="rsvp-response-button" onClick={ this._handleSubmit }>
-                        { this.state.confirmed ? "Confirmed" : "Submit" }
-                    </button>
-                </div>
             </div>
         )
     }
@@ -158,9 +221,15 @@ class Rsvp extends Component {
         return (
             <div className="rsvp">
                 <div id="rsvp-invite">
-                {
-                    invitationString.join("") + " - Please join us in celebrating our wedding day"
-                }
+                { invitationString.join("") }
+                <br />
+                Please join us in celebrating our wedding day.
+                <p>{ "May 17th 2025 @ 3pm" }</p>
+                The Engine House
+                <br />
+                Walthamstow Wetlands
+                <br />
+                N17 9DG
                 </div>
                 { this._renderResponse() }
             </div>

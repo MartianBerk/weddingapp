@@ -13,6 +13,20 @@
             "invite": "ceremony",
             "lastname": "Ogasawara",
             "rsvp": null
+        },
+        {
+            "email": "baker.bsc@gmail.com",
+            "firstname": "Martin",
+            "invite": "ceremony",
+            "lastname": "Baker",
+            "rsvp": null
+        },
+        {
+            "email": "ashleyogasawara@gmail.com",
+            "firstname": "Ashley",
+            "invite": "ceremony",
+            "lastname": "Ogasawara",
+            "rsvp": null
         }
     ]
 }

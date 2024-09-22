@@ -10,7 +10,7 @@ class Error extends Component {
         return (
             <div id="error-page">
               <h1>Oops!</h1>
-              <p>Sorry, an unexpected error has occurred.</p>
+              <p>{ this.props.err ? this.props.err : "Sorry, an unexpected error has occurred."}</p>
             </div>
         );
     }

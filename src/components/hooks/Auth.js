@@ -13,7 +13,6 @@ export const Auth = (email, token, callback) => {
     )
     .then(response => response.json())
     .then(data => {
-        callback(data.is_logged_in);
+        callback(data.is_logged_in, data.error ? data.message : null);
     })
-    .catch()
 }

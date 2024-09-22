@@ -55,6 +55,7 @@
     padding: 10px;
     position: absolute;
     top: 0;
+    right: 50%;
 }
 
 .rsvp-response-button.active {
@@ -62,8 +63,10 @@
 }
 
 .rsvp-response-diet {
+    text-align: center;
     background-color: inherit;
     color: #88884a;
+    margin-top: 35px;
 }
 
 .rsvp-response-submit-button {

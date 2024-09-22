@@ -155,6 +155,8 @@ class Rsvp extends Component {
     _renderResponse() {
         return (
             <div className="rsvp-response">
+                Please join us in celebrating our wedding day.
+                <br />
                 <br />
                 <table className="rsvp-response-table">
                     <tr>
@@ -168,21 +170,19 @@ class Rsvp extends Component {
                                 <tr>
                                     <td>
                                         { guest.firstname }
-                                        {
-                                            guest.rsvp === guest.invite && 
-                                            <tr>
-                                                <textarea 
-                                                    id={`rsvp-response-diet-${i}`} 
-                                                    className="rsvp-response-diet" 
-                                                    placeholder="Dietary restrictions (if any)" 
-                                                    rows="4" 
-                                                    onChange={ (e) => this._handleDietChange(i, e) } 
-                                                />
-                                            </tr>
-                                        }
                                     </td>
                                     <td className="rsvp-response-button-container">
                                         <button className={"rsvp-response-button" + (guest.rsvp === guest.invite ? " active" : "")} value="yes" onClick={ (e) => this._handleRsvpClick(i, e) } />
+                                        {
+                                            guest.rsvp === guest.invite && 
+                                            <textarea 
+                                                id={`rsvp-response-diet-${i}`} 
+                                                className="rsvp-response-diet" 
+                                                placeholder="Dietary restrictions (if any)" 
+                                                rows="4" 
+                                                onChange={ (e) => this._handleDietChange(i, e) } 
+                                            />
+                                        }
                                     </td>
                                     <td className="rsvp-response-button-container">
                                         <button className={"rsvp-response-button" + (guest.rsvp === "none" ? " active" : "")} key={i} value="no" onClick={ (e) => this._handleRsvpClick(i, e) } />
@@ -206,8 +206,42 @@ class Rsvp extends Component {
         )
     }
 
+    _renderConfirmation(canMakeIt) {
+        const startTime = this.state.guests.length > 0 && this.state.guests[0].invite === "ceremony" ? "3pm" : "5pm"; 
+        
+        return (
+            <div className="rsvp-response">
+                <br />
+                {
+                    canMakeIt === this.state.guests.length ?
+                    "We're delighted you're able to join us. Details as follows:" :
+                    (
+                        canMakeIt > 0 ?
+                        "We're sorry you can't all make it, but for those of you who can, details as follows:" :
+                        "We're sorry you can't make it. Look out for photos!"
+                    )
+                    
+                }
+                <br />
+                {
+                    canMakeIt > 0 &&
+                    <div>
+                        <p>{ "May 17th 2025 @ " + startTime }</p>
+                        The Engine House
+                        <br />
+                        Walthamstow Wetlands
+                        <br />
+                        N17 9DG
+                    </div>
+                }
+                
+            </div>
+        )
+    }
+
     _renderRsvp() {
         let invitationString = []
+        let canMakeIt = 0;
 
         this.state.guests && this.state.guests.map((guest, i) => {
             if (i > 0 && i < this.state.guests.length - 1) {
@@ -218,22 +252,19 @@ class Rsvp extends Component {
             }
 
             invitationString.push(`${guest.firstname}`)
+
+            if (guest.rsvp === guest.invite) {
+                canMakeIt++;
+            }
         })
 
         return (
             <div className="rsvp">
                 <div id="rsvp-invite">
-                { invitationString.join("") }
-                <br />
-                Please join us in celebrating our wedding day.
-                <p>{ "May 17th 2025 @ 3pm" }</p>
-                The Engine House
-                <br />
-                Walthamstow Wetlands
-                <br />
-                N17 9DG
+                    { invitationString.join("") }
+                    <br />
                 </div>
-                { this._renderResponse() }
+                { this.state.confirmed ? this._renderConfirmation(canMakeIt) : this._renderResponse() }
             </div>
         )
     }

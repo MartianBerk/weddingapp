@@ -240,7 +240,7 @@ class Rsvp extends Component {
         return (
             <div className="rsvp-container">
                 {
-                    this.authenticated !== null && this.guests !== null ? (
+                    this.authenticated !== null && this.guests.length > 0 ? (
                         (this.state.authenticated === false || this.state.error !== null) ? <Error err={this.state.error} /> : this._renderRsvp()
                     ) : null   
                 }

@@ -30,7 +30,7 @@ class Rsvp extends Component {
                 if (i === j) {
                     guest.rsvp = event.target.value === "yes" ? guest.invite : "none"
                 }
-                allChecked = allChecked && guest.rsvp !== null;
+                allChecked = allChecked && guest.rsvp !== "";
             })
 
             return { guests: guests, allChecked: allChecked }
@@ -38,38 +38,40 @@ class Rsvp extends Component {
     }
 
     _handleSubmit(_event) {
-        let payload = {rsvp: []}
+        if (!this.state.confirmed) {
+            let payload = {rsvp: []}
 
-        this.state.guests.map(guest => {
-            if (guest.rsvp !== null) {
-                payload.rsvp.push({email: guest.email, rsvp: guest.rsvp, diet: guest.diet})
-            }
-        })
-
-        this.requests.fetch(
-            "RSVPURL",
-            "POST",
-            {},
-            {"Content-Type": "application/json"},
-            payload,
-            "same-origin"
-        )
-        .then(response => response.json())
-        .then(data => this.setState((_) => {
-            let guests = [...this.state.guests]
-            let confirmed = true;
-
-            data.guests.map((guest, i) => {
-                guest.diet = null
-                guests[i] = guest
-                if (guest.rsvp === null) {
-                    confirmed = false
+            this.state.guests.map(guest => {
+                if (guest.rsvp !== "") {
+                    payload.rsvp.push({email: guest.email, rsvp: guest.rsvp, diet: guest.diet})
                 }
             })
 
-            return {guests: guests, confirmed: confirmed}
-        }))
-        .catch()
+            this.requests.fetch(
+                "RSVPURL",
+                "POST",
+                {},
+                {"Content-Type": "application/json"},
+                payload,
+                "same-origin"
+            )
+            .then(response => response.json())
+            .then(data => this.setState((_) => {
+                let guests = [...this.state.guests]
+                let confirmed = true;
+
+                data.guests.map((guest, i) => {
+                    guest.diet = null
+                    guests[i] = guest
+                    if (guest.rsvp === "") {
+                        confirmed = false
+                    }
+                })
+
+                return {guests: guests, confirmed: confirmed}
+            }))
+            .catch()
+        }
     }
 
     _handleDietChange(i, event) {
@@ -96,7 +98,7 @@ class Rsvp extends Component {
             let allChecked = true;
 
             data.guests.map((guest, i) => {
-                if (guest.rsvp === null) {
+                if (guest.rsvp === "") {
                     confirmed = false
                     allChecked = false
                 }
@@ -194,7 +196,7 @@ class Rsvp extends Component {
                     this.state.allChecked &&
                     (
                         <div className="rsvp-response-submit">
-                            <button className="rsvp-response-submit-button" onClick={ this._handleSubmit }>
+                            <button className="rsvp-response-submit-button" onClick={ this._handleSubmit } disabled={ this.state.confirmed }>
                                 { this.state.confirmed ? "Confirmed" : "Submit" }
                             </button>
                         </div>
@@ -240,7 +242,7 @@ class Rsvp extends Component {
         return (
             <div className="rsvp-container">
                 {
-                    this.authenticated !== null && this.guests.length > 0 ? (
+                    this.state.authenticated !== null && this.state.guests.length > 0 ? (
                         (this.state.authenticated === false || this.state.error !== null) ? <Error err={this.state.error} /> : this._renderRsvp()
                     ) : null   
                 }

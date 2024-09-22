@@ -14,7 +14,7 @@ class Rsvp extends Component {
         this.state = { authenticated: null, error: null, guests: [], confirmed: false, allChecked: false }
         this.requests = new Requests();
 
-        Auth(this.props.email, this.props.token, (success) => { this.setState({ authenticated: success }, this._onAuthentication ) });
+        Auth(this.props.email, this.props.token, (success, err) => { this.setState({ authenticated: success, error: err }, this._onAuthentication ) });
 
         this._handleRsvpClick = this._handleRsvpClick.bind(this);
         this._handleSubmit = this._handleSubmit.bind(this);
@@ -104,7 +104,7 @@ class Rsvp extends Component {
 
             return {guests: data.guests, confirmed: confirmed, allChecked: allChecked}
         }))
-        .catch(e => this.setState({ error: true }))
+        .catch(e => this.setState({ error: e }))
     }
 
     // _renderResponse1() {
@@ -241,7 +241,7 @@ class Rsvp extends Component {
             <div className="rsvp-container">
                 {
                     this.authenticated !== null && this.guests !== null ? (
-                        (this.state.authenticated === false || this.state.error === true) ? <Error /> : this._renderRsvp()
+                        (this.state.authenticated === false || this.state.error !== null) ? <Error err={this.state.error} /> : this._renderRsvp()
                     ) : null   
                 }
             </div>

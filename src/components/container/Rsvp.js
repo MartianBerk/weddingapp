@@ -161,14 +161,14 @@ class Rsvp extends Component {
                 <table className="rsvp-response-table">
                     <tr>
                         <td></td>
-                        <td>Wouldn't Miss It</td>
-                        <td>Be There In Spirit</td>
+                        <td className="rsvp-response-heading">I'll Be There</td>
+                        <td className="rsvp-response-heading">Be There In Spirit</td>
                     </tr>
                     {
                         this.state.guests.map((guest, i) => {
                             return (
                                 <tr>
-                                    <td>
+                                    <td className="rsvp-invite-names">
                                         { guest.firstname }
                                     </td>
                                     <td className="rsvp-response-button-container">
@@ -211,13 +211,12 @@ class Rsvp extends Component {
         
         return (
             <div className="rsvp-response">
-                <br />
                 {
                     canMakeIt === this.state.guests.length ?
-                    "We're delighted you're able to join us. Details as follows:" :
+                    "We're delighted you're able to join us." :
                     (
                         canMakeIt > 0 ?
-                        "We're sorry you can't all make it, but for those of you who can, details as follows:" :
+                        "We're sorry you can't all make it, but looking forward to seeing those of you who can." :
                         "We're sorry you can't make it. Look out for photos!"
                     )
                     
@@ -225,8 +224,8 @@ class Rsvp extends Component {
                 <br />
                 {
                     canMakeIt > 0 &&
-                    <div>
-                        <p>{ "May 17th 2025 @ " + startTime }</p>
+                    <div className="rsvp-invite-names rsvp-response-details">
+                        <p>{ "May 17th 2025 at " + startTime }</p>
                         The Engine House
                         <br />
                         Walthamstow Wetlands
@@ -260,9 +259,9 @@ class Rsvp extends Component {
 
         return (
             <div className="rsvp">
-                <div id="rsvp-invite">
-                    { invitationString.join("") }
-                    <br />
+                <div className="rsvp-invite-names">
+                    {/* { invitationString.join("") } */}
+                    {/* <br /> */}
                 </div>
                 { this.state.confirmed ? this._renderConfirmation(canMakeIt) : this._renderResponse() }
             </div>

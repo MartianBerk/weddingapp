@@ -13,10 +13,9 @@
     height: 35%;
 } */
 
-/* .rsvp-response {
-    height: 50%;
-    position: relative;
-} */
+.rsvp-response {
+    font-size: 30px;
+}
 
 /* .rsvp-response-options {
     height: 100%;
@@ -48,7 +47,7 @@
 
 .rsvp-response-button {
     background-color: inherit;
-    border-color: #ffffff;
+    border-color: #c0bcbc;
     cursor: pointer;
     color: #88884a;
     font-weight: bolder;
@@ -59,21 +58,22 @@
 }
 
 .rsvp-response-button.active {
-    background-color: #919e6f;
+    background-color: #274854;
 }
 
 .rsvp-response-diet {
     text-align: center;
     background-color: inherit;
-    color: #88884a;
+    color: #274854;
     margin-top: 35px;
 }
 
 .rsvp-response-submit-button {
+    margin-top: 20px;
     font-family: inherit;
     font-size: inherit;
-    color: #66663a;
-    background-color: #b2b2af;
+    color: #274854;
+    background-color: #edf0f1;
     border: none;
     cursor: pointer;
     box-shadow: inset 1px 1px 1px rgba(232, 225, 225, 0.8), inset -3px -3px 6px rgba(0, 0, 0, 0.3);
@@ -82,12 +82,12 @@
 }
 
 .rsvp-response-submit-button:hover {
-    background-color: #919e6f;
+    background-color: #e1f0f5;
 }
-
+/*
 .rsvp-response-submit-button.active {
-    background-color: #919e6f;
-}
+    background-color: #274854;
+} */
 
 /* .rsvp-response-option {
     width: 100%;
@@ -111,7 +111,17 @@
     padding-left: 50px;
 } */
 
+.rsvp-response-heading {
+    font-family: Georgia, serif;
+    font-size: 13px;
+    /* font-weight: bold; */
+}
 
+.rsvp-invite-names {
+    font-family: Georgia, serif;
+    font-size: 18px;
+}
 
-
-
+.rsvp-response-details {
+    font-size: 20px;
+}

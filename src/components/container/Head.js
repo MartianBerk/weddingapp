@@ -11,8 +11,8 @@ class Head extends Component {
     render () {
         return (
             <div className="wedding-header">
-                <p>Ashley & Martin '25</p>
-                <img src="enginehouse-color2-circle2.svg" width="300" height="200" />
+                <p>Ashley & Martin</p>
+                <img src="enginehouse-color2-circle2.svg" width="400" height="250" />
             </div>
         )
     }

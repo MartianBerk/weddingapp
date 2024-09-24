@@ -1,18 +1,22 @@
 {
     "guests": [
         {
-            "email": "baker.bsc@gmail.com",
-            "firstname": "Martin",
+            "diet": "Spicy, very very spicy",
+            "email": "sebglb@gmail.com",
+            "firstname": "Gordon",
             "invite": "ceremony",
             "lastname": "Baker",
-            "rsvp": "ceremony"
+            "location": "UK",
+            "rsvp": ""
         },
         {
-            "email": "ashleyogasawara@gmail.com",
-            "firstname": "Ashley",
+            "diet": "Vegan, obviously",
+            "email": "sebglb1@gmail.com",
+            "firstname": "Susan",
             "invite": "ceremony",
-            "lastname": "Ogasawara",
-            "rsvp": "party"
+            "lastname": "Baker",
+            "location": "UK",
+            "rsvp": ""
         }
     ]
 }

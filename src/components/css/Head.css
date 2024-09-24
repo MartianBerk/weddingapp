@@ -2,10 +2,12 @@
     font-size: 30px;
     text-align: center;
     height: 300px;
+    font-family: Georgia, serif;
 }
 
 .wedding-header img {
     text-align: center;
     margin: auto;
-    /* margin-top: -50px; */
+    margin-top: -20px;
+    margin-left: -10px;
 }

@@ -1,10 +1,10 @@
 .wedding-container {
   text-align: center;
-  background-color: #292925;
+  background-color: #f8f8f1;
   width: 100%;
   height: 100%;
   position: fixed;
   font-family: 'Brush Script MT', cursive;
-  color: #9b9b6f;
+  color: #274854;
   overflow-y: scroll;
 }

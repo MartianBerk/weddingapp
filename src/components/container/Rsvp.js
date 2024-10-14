@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 
 import { Auth } from '../hooks/Auth.js';
 import { Requests } from '../requests.js';
@@ -109,49 +110,6 @@ class Rsvp extends Component {
         .catch(e => this.setState({ error: e }))
     }
 
-    // _renderResponse1() {
-    //     return (
-    //         <div className="rsvp-response">
-    //             <div className="rsvp-response-options">
-    //             {
-    //                 this.state.guests.map((guest, i) => {
-    //                     return (
-    //                         <div className="rsvp-response-guest">
-    //                             { guest.firstname }
-    //                             <br />
-    //                             <div className="rsvp-response-guest-buttons">
-    //                                 <div className="rsvp-response-option">
-    //                                     <button className={"rsvp-response-button" + (guest.rsvp === guest.invite ? " active" : "")} value="yes" onClick={ (e) => this._handleRsvpClick(i, e) }>
-    //                                         { guest.rsvp === guest.invite ? 'X' : '' }
-    //                                     </button>
-    //                                     Wouldn't miss it
-    //                                 </div>
-    //                                 <br />
-    //                                 <div className="rsvp-response-option">
-    //                                     <button className={"rsvp-response-button" + (guest.rsvp === "none" ? " active" : "")} key={i} value="no" onClick={ (e) => this._handleRsvpClick(i, e) }>
-    //                                         { guest.rsvp === "none" ? 'X' : '' }
-    //                                     </button>
-    //                                     I'll be there in spirit
-    //                                 </div>
-    //                                 {
-    //                                     guest.rsvp === guest.invite && 
-    //                                     <textarea id={`rsvp-response-diet-${i}`} className="rsvp-response-diet" placeholder="Dietary restrictions (if any)" rows="4" onChange={ (e) => this._handleDietChange(i, e) }></textarea>
-    //                                 }
-    //                             </div>
-    //                         </div>
-    //                     )
-    //                 })
-    //             }
-    //             </div>
-    //             <div className="rsvp-response-submit">
-    //                 <button className="rsvp-response-submit-button" onClick={ this._handleSubmit }>
-    //                     { this.state.confirmed ? "Confirmed" : "Submit" }
-    //                 </button>
-    //             </div>
-    //         </div>
-    //     )
-    // }
-
     _renderResponse() {
         return (
             <div className="rsvp-response">
@@ -231,6 +189,11 @@ class Rsvp extends Component {
                         Walthamstow Wetlands
                         <br />
                         N17 9DG
+                        <br />
+                        <br />
+                        <nav className="rsvp-info-route">
+                            <NavLink to="/info">Information</NavLink>
+                        </nav>
                     </div>
                 }
                 

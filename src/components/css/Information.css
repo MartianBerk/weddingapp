@@ -1,0 +1,9 @@
+.info-body {
+    font-size: 18px;
+    text-align: center;
+    font-family: Georgia, serif;
+}
+
+.info-body a {
+    text-decoration: none;
+}

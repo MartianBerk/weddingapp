@@ -29,12 +29,13 @@ function App() {
           element: <RsvpRoute />,
           errorElement: <ErrorRoute />
         },
-        // {
-        //   path: "/information",
-        //   element: <InformationRoute />,
-        //   errorElement: <ErrorRoute />
-        // }
-      ]
+        {
+          path: "/info",
+          element: <InformationRoute />,
+          errorElement: <ErrorRoute />
+        }
+      ],
+      errorElement: <ErrorRoute />
       
     }
   ]);

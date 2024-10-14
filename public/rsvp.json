@@ -7,7 +7,7 @@
             "invite": "ceremony",
             "lastname": "Baker",
             "location": "UK",
-            "rsvp": ""
+            "rsvp": "ceremony"
         },
         {
             "diet": "Vegan, obviously",
@@ -16,7 +16,7 @@
             "invite": "ceremony",
             "lastname": "Baker",
             "location": "UK",
-            "rsvp": ""
+            "rsvp": "ceremony"
         }
     ]
 }

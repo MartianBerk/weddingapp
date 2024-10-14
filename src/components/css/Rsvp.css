@@ -8,26 +8,9 @@
     width: 100%;
 }
 
-/* #rsvp-invite {
-    margin-bottom: 15px;
-    height: 35%;
-} */
-
 .rsvp-response {
     font-size: 30px;
 }
-
-/* .rsvp-response-options {
-    height: 100%;
-} */
-
-/* .rsvp-response-submit {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    margin: auto;
-    text-align: center;
-} */
 
 .rsvp-response-table {
     width: 100%;
@@ -84,37 +67,10 @@
 .rsvp-response-submit-button:hover {
     background-color: #e1f0f5;
 }
-/*
-.rsvp-response-submit-button.active {
-    background-color: #274854;
-} */
-
-/* .rsvp-response-option {
-    width: 100%;
-}
-
-.rsvp-response-guest {
-    float: left;
-    border-top: none;
-    font-size: 25px;
-    padding-top: 5px;
-    padding-bottom: 30px;
-    transition: 0.3s;
-    outline: none;
-    width: 50%;
-    height: 50px;
-} */
-
-/* .rsvp-response-guest-buttons {
-    margin: auto;
-    text-align: left;
-    padding-left: 50px;
-} */
 
 .rsvp-response-heading {
     font-family: Georgia, serif;
     font-size: 13px;
-    /* font-weight: bold; */
 }
 
 .rsvp-invite-names {
@@ -124,4 +80,8 @@
 
 .rsvp-response-details {
     font-size: 20px;
+}
+
+.rsvp-info-route a {
+    text-decoration: none;
 }
